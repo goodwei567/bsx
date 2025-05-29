@@ -1,0 +1,32 @@
+
+#配置数据库连接
+spring:
+  #数据库的配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bsx
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  #springboot页面渲染引擎的配置
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    #设置springboot页面引擎的渲染目录
+    prefix: classpath:/templates/
+    #设置springboot渲染的页面文件的后缀
+    suffix: .html
+    cache: false
+    servlet:
+      content-type: text/html #设置页面响应的响应头信息
+
+#mybatis：
+mybatis:
+  #配置映射文件的位置
+  mapper-locations: classpath:mapper/*.xml
+  #配置映射文件对应的实体类所在的包
+  type-aliases-package: com.yoyo.yoyoshop.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 8083

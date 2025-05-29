@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bsx.baishanxing.dao.AdminDao">
+    <select id="select" resultType="com.bsx.baishanxing.pojo.Admin">
+        select * from admin;
+    </select>
+    <select id="selectOne" resultType="com.bsx.baishanxing.pojo.Admin" parameterType="com.bsx.baishanxing.pojo.Admin">
+        select * from admin where account=#{account} and password=#{password};
+    </select>
+    <insert id="insert" parameterType="com.bsx.baishanxing.pojo.Admin">
+        insert into admin (account, password, nickname, tel, email) values (#{account}, #{password}, #{nickname}, #{tel}, #{email});
+    </insert>
+    <update id="update" parameterType="com.bsx.banshanxing.pojo.Admin">
+        update admin
+        <set>
+            <if test="password != null"> password=#{password} </if>,
+            <if test="nickname != null"> nickname=#{nickname} </if>,
+            <if test="tel != null"> tel=#{tel} </if>,
+            <if test="email != null"> email=#{eamil} </if>,
+        </set>
+        <where>
+            <if test="id != null">id=#{id} </if>
+            and
+            <if test="account != null">account=#{account}</if>
+        </where>
+    </update>
+    <delete id="delete" parameterType="com.bsx.baishanxing.pojo.Admin">
+        update admin set del = 0
+        <where>
+            <if test="id != null">id=#{id} </if>
+            and
+            <if test="account != null">account=#{account}</if>
+        </where>
+    </delete>
+</mapper>
